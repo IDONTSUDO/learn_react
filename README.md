@@ -1,4 +1,37 @@
-## React Component Fn
+## JSX/TSX/DOM/HTML
+
+JSX/TSX === HTML/DOM является полностью эквивалентными элементами все что работает в HTML,DOM сработает в JSX/TSX
+
+Отсутсвие HTML тэга в JSX/TSX.
+
+```typescript
+<></>
+```
+
+Единый тэг.
+
+```tsx
+<div/>
+```
+Двойной тэг.
+```tsx
+<div></div>
+````
+
+### Обработка основных событий
+
+События в HTML
+https://learn.javascript.ru/introduction-browser-events
+
+```tsx
+<>
+<div onClick=(() => fn())/>
+<div onChange=(() => fn())/>
+</>
+
+```
+
+## Функциональные React Component
 
 есть 2 вида записи функциональных реакт компонентов
 
@@ -12,7 +45,7 @@ export function Foo() {
 }
 ```
 
-необходимые условия
+необходимые условия !
 
 - React компоненты должны быть названы с большой буквы.
 - React компоненты должны возвращать JSX/TSX.
@@ -68,6 +101,18 @@ export const Foo = (props:IFooProps) => (<>{props.bar}</>)
 ```typescript
 interface IFooProps{
     bar:string;
+}
+export const Foo = ({bar}:IFooProps) => (<>{bar}</>)
+
+<Foo bar={"123"}/>
+```
+
+Опциональные пропсы. С добавлением после объявления свойства добавляется ? что означает что свойство может быть undefined и оно является не обязательным.
+
+```typescript
+interface IFooProps{
+    bar:string;
+    biz?:string;
 }
 export const Foo = ({bar}:IFooProps) => (<>{bar}</>)
 
