@@ -51,7 +51,7 @@ Object {{}}
 interface IFooProps{
     bar:string;
 }
-export const Foo = (props) => (<>{props.bar}</>)
+export const Foo = (props:IFooProps) => (<>{props.bar}</>)
 
 <Foo bar={"123"}/>
 ```
@@ -62,7 +62,7 @@ export const Foo = (props) => (<>{props.bar}</>)
 interface IFooProps{
     bar:string;
 }
-export const Foo = ({bar}) => (<>{bar}</>)
+export const Foo = ({bar}:IFooProps) => (<>{bar}</>)
 
 <Foo bar={"123"}/>
 ```
