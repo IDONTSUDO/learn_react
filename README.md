@@ -31,12 +31,19 @@ export function Foo() {
 ##### Пример вставки разных типов.
 
 String -> {""}
+
 Number -> {1}
+
 undefined -> {undefined}
+
 null -> {null}
+
 bollean -> {true}
+
 Array -> {[1,2,3].map((el) => <>{el}</>)}
+
 Object {{}}
+
 необходимые условия
 
 - Мы не можем использовать функции которые возвращают void/undefined. Примером таких функций является console.log() .forEach()
