@@ -11,12 +11,14 @@ JSX/TSX === HTML/DOM является полностью эквивалентн�
 Единый тэг.
 
 ```tsx
-<div/>
+<div />
 ```
+
 Двойной тэг.
+
 ```tsx
 <div></div>
-````
+```
 
 ### Обработка основных событий
 
@@ -117,4 +119,29 @@ interface IFooProps{
 export const Foo = ({bar}:IFooProps) => (<>{bar}</>)
 
 <Foo bar={"123"}/>
+```
+
+Пропсы для передачи стилей
+
+```typescript
+interface IFooProps{
+    style:React.CSSProperties;
+    biz?:string;
+}
+export const Foo = ({bar}:IFooProps) => (<div style={props.style}>{bar}</div>)
+
+<Foo style={{color:"red"}}/>
+```
+
+Пропсы для передачи React компонента.
+
+```typescript
+interface IFooProps{
+    child:React.ReactNode;
+}
+export const Foo = ({child}:IFooProps) => (<div>{child}</div>)
+
+<Foo child={<>ТУТ JSX</>}/>
+<Foo child={<Foo child={<>ТУТ JSX</>}/>}/>
+
 ```
