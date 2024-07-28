@@ -145,3 +145,67 @@ export const Foo = ({child}:IFooProps) => (<div>{child}</div>)
 <Foo child={<Foo child={<>ТУТ JSX</>}/>}/>
 
 ```
+
+React Router
+
+### Установка
+
+npm i react-router-dom
+
+### Применение
+
+```typescript
+import ReactDOM from "react-dom/client";
+import { RouterProvider, useNavigate } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
+//путь до экрана записанный в переменной
+export const BarScreenPath = "/bar";
+export const BarScreen = () => {
+    //Использование хука useNavigate для получения функции переключения экранов
+  const navigate = useNavigate();
+
+  return (
+    <div
+      onClick={() => {
+        navigate(FooScreenPath);
+      }}
+    >
+      Bar
+    </div>
+  );
+};
+
+export const FooScreenPath = "/foo";
+export const FooScreen = () => {
+  const navigate = useNavigate();
+
+  return (
+    <div
+      onClick={() => {
+        navigate(BarScreenPath);
+      }}
+    >
+      FOO
+    </div>
+  );
+};
+
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
+
+export const router = createBrowserRouter([
+  {
+    path: FooScreenPath,
+    element: <FooScreen />,
+  },
+  {
+    path: BarScreenPath,
+    element: <BarScreen />,
+  },
+]);
+root.render(
+  <>
+    <RouterProvider router={router} />
+  </>
+);
+
+```
