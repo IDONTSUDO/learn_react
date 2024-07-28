@@ -146,7 +146,7 @@ export const Foo = ({child}:IFooProps) => (<div>{child}</div>)
 
 ```
 
-React Router
+## React Router
 
 ### Установка
 
