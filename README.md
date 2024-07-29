@@ -145,6 +145,60 @@ export const Foo = ({child}:IFooProps) => (<div>{child}</div>)
 <Foo child={<Foo child={<>ТУТ JSX</>}/>}/>
 
 ```
+## React Hook
+
+
+### Назначение
+###### State
+useState
+
+минимальный пример использования
+```typescript 
+function Foo() {
+  const [message, setMessage] = useState("INIT STATE");
+  return (
+    <>
+      <h1>Welcome - {message}</h1>
+      <button onClick={() => setMessage("SET STATE")}>Chnage</button>
+    </>
+  );
+}
+
+```
+###### Жизненный цикл
+useEffect
+```typescript
+function Foo() {
+  useEffect(() => {
+    console.log("COMPONENT INIT === MOUNT");
+    return () => {
+      console.log("COMPONENT DELETE === UNMOUNT");
+    };
+  }, []);
+  return (
+    <>
+      FOO
+    </>
+  );
+}
+```
+###### получение свойств DOM или подписка на DOM свойства
+useRef
+```typescript
+
+export const Foo = () => {
+  const ref = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    ref.current?.addEventListener("mousemove", () => {});
+    ref.current?.addEventListener("mouseleave", () => {});
+  }, []);
+
+  return <div ref={ref}></div>;
+};
+
+```
+
 
 ## React Router
 
