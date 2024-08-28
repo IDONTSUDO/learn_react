@@ -145,15 +145,18 @@ export const Foo = ({child}:IFooProps) => (<div>{child}</div>)
 <Foo child={<Foo child={<>ТУТ JSX</>}/>}/>
 
 ```
+
 ## React Hook
 
-
 ### Назначение
+
 ###### State
+
 useState
 
 минимальный пример использования
-```typescript 
+
+```typescript
 function Foo() {
   const [message, setMessage] = useState("INIT STATE");
   return (
@@ -163,10 +166,12 @@ function Foo() {
     </>
   );
 }
-
 ```
+
 ###### Жизненный цикл
+
 useEffect
+
 ```typescript
 function Foo() {
   useEffect(() => {
@@ -175,17 +180,15 @@ function Foo() {
       console.log("COMPONENT DELETE === UNMOUNT");
     };
   }, []);
-  return (
-    <>
-      FOO
-    </>
-  );
+  return <>FOO</>;
 }
 ```
-###### получение свойств DOM или подписка на DOM свойства
-useRef
-```typescript
 
+###### получение свойств DOM или подписка на DOM свойства
+
+useRef
+
+```typescript
 export const Foo = () => {
   const ref = React.useRef<HTMLDivElement>(null);
 
@@ -196,9 +199,7 @@ export const Foo = () => {
 
   return <div ref={ref}></div>;
 };
-
 ```
-
 
 ## React Router
 
@@ -215,7 +216,7 @@ import { createBrowserRouter } from "react-router-dom";
 //путь до экрана записанный в переменной
 export const BarScreenPath = "/bar";
 export const BarScreen = () => {
-    //Использование хука useNavigate для получения функции переключения экранов
+  //Использование хука useNavigate для получения функции переключения экранов
   const navigate = useNavigate();
 
   return (
@@ -244,7 +245,9 @@ export const FooScreen = () => {
   );
 };
 
-const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
 
 export const router = createBrowserRouter([
   {
@@ -261,5 +264,40 @@ root.render(
     <RouterProvider router={router} />
   </>
 );
+```
 
+## MOBX 
+
+### Установка
+
+npm i mobx
+npm i mobx-react-lite
+
+### минимальный пример
+
+```typescript
+import { makeAutoObservable } from "mobx";
+import { observer } from "mobx-react-lite";
+
+export class FooStore {
+  constructor() {
+    makeAutoObservable(this);
+  }
+  init = () => {
+    console.log("component mount");
+  };
+  dispose = () =>{
+    console.log("component unmount");
+  }
+}
+export const FooComponent = observer(() => {
+  const [store] = React.useState(() => new FooStore());
+  React.useEffect(() => {
+    store.init();
+    () => {
+      store.dispose()
+    }
+  }, []);
+  return <></>;
+});
 ```
